@@ -1,2 +1,4 @@
 # little-apy-companion
-api companion for dpy bot making
+API companion for dpy bot making
+<br>
+Helps with command handling and initializing for discord.py api bot making
