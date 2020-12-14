@@ -1,6 +1,5 @@
 import os
 import discord
-import operator
 from importlib import reload
 from importlib import import_module
 async def handle(execute, prefix, message, client, owner_ids):
