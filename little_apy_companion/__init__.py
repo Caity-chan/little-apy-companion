@@ -10,7 +10,7 @@ async def handle(execute, prefix, message, client):
 		args = command_and_args[1:]
 		if command != "reload":
 			for cmd in execute:
-				if cmd.cmd == command:
+				if cmd.cmd == command or command in cmd.aliases:
 					if cmd.typing == True:
 						await message.channel.trigger_typing()
 					if cmd.executable_by == "bot_owner":
