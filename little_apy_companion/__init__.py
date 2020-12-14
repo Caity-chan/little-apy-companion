@@ -2,7 +2,7 @@ import os
 import discord
 from importlib import reload
 from importlib import import_module
-async def handle(execute, prefix, message, client, owner):
+async def handle(execute, prefix, message, client, owner_ids):
 	if message.content.startswith(prefix):
 		command_and_args = message.content[len(prefix):]
 		command_and_args = command_and_args.split(" ")
@@ -12,7 +12,7 @@ async def handle(execute, prefix, message, client, owner):
 			for cmd in execute:
 				if cmd.cmd == command:
 					if cmd.executable_by == "bot_owner":
-						if message.author.id == owner:
+						if operator.contains(owner_ids, message.author.id):
 							await cmd.execute(command, args, message, client)
 						else:
 							await message.channel.send("You are not the bot owner!")
@@ -26,7 +26,7 @@ async def handle(execute, prefix, message, client, owner):
 						else:
 							await cmd.execute(command, args, message, client)
 		else:
-			if message.author.id == owner:
+			if operator.contains(owner_ids, message.author.id):
 				execute = []
 				for filename in os.listdir('/home/container/commands'):
 					if filename.endswith('.py'):
