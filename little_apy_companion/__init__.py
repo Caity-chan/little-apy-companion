@@ -13,7 +13,7 @@ async def handle(execute, prefix, message, client, owner_ids):
 			for cmd in execute:
 				if cmd.cmd == command:
 					if cmd.executable_by == "bot_owner":
-						if operator.contains(owner_ids, message.author.id):
+						if message.author.id in owner_ids:
 							await cmd.execute(command, args, message, client)
 						else:
 							await message.channel.send("You are not the bot owner!")
@@ -27,7 +27,7 @@ async def handle(execute, prefix, message, client, owner_ids):
 						else:
 							await cmd.execute(command, args, message, client)
 		else:
-			if operator.contains(owner_ids, message.author.id):
+			if message.author.id in owner_ids:
 				execute = []
 				for filename in os.listdir('/home/container/commands'):
 					if filename.endswith('.py'):
