@@ -1,3 +1,7 @@
+import os
+import discord
+from importlib import reload
+from importlib import import_module
 async def handle(execute, prefix, message, client):
 	if message.content.startswith("rcc.py"):
 		command_and_args = message.content[len(prefix):]
@@ -35,7 +39,7 @@ async def handle(execute, prefix, message, client):
 			else:
 				await message.channel.send("You are not the bot owner!")
 
-async def cmdInit():
+async def cmdInit(execute):
 	for filename in os.listdir('/home/container/commands'):
 		if filename.endswith('.py'):
 			module = "commands." + filename[0:-3]
