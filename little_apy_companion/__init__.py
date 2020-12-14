@@ -3,7 +3,7 @@ import discord
 from importlib import reload
 from importlib import import_module
 async def handle(execute, prefix, message, client):
-	if message.content.startswith("rcc.py"):
+	if message.content.startswith(prefix):
 		command_and_args = message.content[len(prefix):]
 		command_and_args = command_and_args.split(" ")
 		command = command_and_args[0]
